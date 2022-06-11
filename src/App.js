@@ -76,6 +76,7 @@ function App() {
         let values = []
         keys.map(key => {
                 values.push(initialData[key])
+                return 0;
             }
         )
         return values;
