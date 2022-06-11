@@ -132,22 +132,26 @@ function App() {
                         <tbody>
                         {
                             filteredData.map((data, index) =>
-                                        <tr className={
-                                            isCuurrentIndex(data) ? "bg-blue-200" : "bg-white"}>
-                                            <th scope="row"
-                                                className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                                {data.name}
-                                            </th>
-                                            <td className="px-6 py-4">
-                                                {data.rankNumber}
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                {data.bananas}
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                {String(data.subscribed)}
-                                            </td>
-                                        </tr>
+                            {
+                                return (
+                                    <tr className={
+                                        isCuurrentIndex(data) ? "bg-blue-200" : "bg-white"}>
+                                        <th scope="row"
+                                            className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                            {data.name}
+                                        </th>
+                                        <td className="px-6 py-4">
+                                            {data.rankNumber}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {data.bananas}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {String(data.subscribed)}
+                                        </td>
+                                    </tr>
+                                )
+                            }
                                 )
                             }
                             )
