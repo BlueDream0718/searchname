@@ -14,7 +14,7 @@ function App() {
     function searchFunc() {
         searchData = null;
         let values = getInitialValues()
-        if (searchText === "") {
+        if (searchText.toString() === "") {
             toast().warning('Warning', 'Please input name!').with({
                 shape: 'pill',
                 duration: 2000,
@@ -133,28 +133,22 @@ function App() {
                         <tbody>
                         {
                             filteredData.map((data, index) =>
-                            {
-                                return (
-                                    <tr className={
-                                        isCuurrentIndex(data) ? "bg-blue-200" : "bg-white"}>
-                                        <th scope="row"
-                                            className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                            {data.name}
-                                        </th>
-                                        <td className="px-6 py-4">
-                                            {data.rankNumber}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {data.bananas}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {String(data.subscribed)}
-                                        </td>
-                                    </tr>
-                                )
-                            }
-                                )
-                            }
+                                <tr className={
+                                    isCuurrentIndex(data) ? "bg-blue-200" : "bg-white"}>
+                                    <th scope="row"
+                                        className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                        {data.name}
+                                    </th>
+                                    <td className="px-6 py-4">
+                                        {data.rankNumber}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        {data.bananas}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        {String(data.subscribed)}
+                                    </td>
+                                </tr>
                             )
                         }
                         </tbody>
