@@ -1,10 +1,8 @@
-import logo from './logo.svg';
-
 import './App.css';
 import initialData from "./leaderboard"
 import {useEffect, useState} from "react";
 
-const {toast, snackbar} = require('tailwind-toast')
+const {toast} = require('tailwind-toast')
 
 let searchData = null;
 
@@ -16,7 +14,7 @@ function App() {
     function searchFunc() {
         searchData = null;
         let values = getInitialValues()
-        if (searchText == "") {
+        if (searchText === "") {
             toast().warning('Warning', 'Please input name!').with({
                 shape: 'pill',
                 duration: 2000,
@@ -33,18 +31,21 @@ function App() {
             values.map((value) => {
                 if ((value.name.includes(searchText) || value.name.toLowerCase().includes(searchText)) && !searchData)
                     searchData = value
+                return 0;
             })
 
             values.map((value, index) => {
                 values[index].rankNumber = (index + 1)
+                return 0;
             })
 
             values = values.slice(0, 10)
 
             let isExist = false;
             values.map(value => {
-                if (searchData && value.uid == searchData.uid)
+                if (searchData && value.uid === searchData.uid)
                     isExist = true;
+                return 0;
             })
 
             if (!isExist)
@@ -65,7 +66,7 @@ function App() {
 
     function isCuurrentIndex(data) {
         if (searchData) {
-            return searchData.uid == data.uid
+            return searchData.uid === data.uid
         } else
             return false;
     }
@@ -130,24 +131,25 @@ function App() {
                         </thead>
                         <tbody>
                         {
-                            filteredData.map(
-                                (data, index) =>
-                                    <tr className={
-                                        isCuurrentIndex(data) ? "bg-blue-200" : "bg-white"}>
-                                        <th scope="row"
-                                            className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                            {data.name}
-                                        </th>
-                                        <td className="px-6 py-4">
-                                            {data.rankNumber}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {data.bananas}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {String(data.subscribed)}
-                                        </td>
-                                    </tr>
+                            filteredData.map((data, index) =>
+                                        <tr className={
+                                            isCuurrentIndex(data) ? "bg-blue-200" : "bg-white"}>
+                                            <th scope="row"
+                                                className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                                {data.name}
+                                            </th>
+                                            <td className="px-6 py-4">
+                                                {data.rankNumber}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {data.bananas}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {String(data.subscribed)}
+                                            </td>
+                                        </tr>
+                                )
+                            }
                             )
                         }
                         </tbody>
